@@ -1,0 +1,45 @@
+using System.Collections.Generic;
+
+namespace ChessLogic
+{
+    public abstract class Piece
+    {
+        public abstract PieceType Type { get; }
+        public abstract Player Color { get; }
+        public bool HasMoved { get; set; } = false;
+
+        public abstract Piece Copy();
+
+        public abstract IEnumerable<Move> GetPossibleMoves(Position from, Board board);
+
+        protected IEnumerable<Position> MovePositionsInDir(Position from, Board board, Direction dir)
+        {
+            for (Position pos = from + dir; Board.IsInside(pos); pos += dir)
+            {
+                if (board.IsEmpty(pos))
+                {
+                    yield return pos;
+                }
+                else
+                {
+                    if (board[pos].Color != Color)
+                    {
+                        yield return pos;
+                    }
+                    yield break;
+                }
+            }
+        }
+
+        protected IEnumerable<Position> MovePositionsInDirs(Position from, Board board, Direction[] dirs)
+        {
+            foreach (Direction dir in dirs)
+            {
+                foreach (Position pos in MovePositionsInDir(from, board, dir))
+                {
+                    yield return pos;
+                }
+            }
+        }
+    }
+}
