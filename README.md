@@ -21,6 +21,15 @@ A fully playable 2-player offline Chess game built with C# and WPF in .NET 8.
 
 ## How to Run
 
+### Using the Standalone Executable
+
+If you just want to play the game without installing developer tools, you can run the standalone pre-built executable:
+
+1. Navigate to the release directory: `AppRelease/`
+2. Double-click the `Chess UI.exe` application to start playing immediately.
+
+*(This standalone executable has the .NET runtime bundled within it, meaning it will run perfectly on any Windows machine even if the user hasn't installed .NET!)*
+
 ### Using the Command Line (.NET CLI)
 
 1. Open a terminal (Command Prompt or PowerShell).
